@@ -12,3 +12,9 @@ composer create-project laravel/laravel jwt_laravel_vue_back 8.*
 3. Сделал тестовый роут, для проверки фронтового "axios"
 
 4. Сделал Регистарцию пользователя
+
+5. Командой сгенерировал модел Fruit, и миграцию для таблицы "fruits":
+php artisan make:model Fruit -m
+
+накатил миграцию:
+php artisan migrate
