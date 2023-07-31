@@ -18,3 +18,8 @@ php artisan make:model Fruit -m
 
 накатил миграцию:
 php artisan migrate
+
+6. Сделал роут получения фруктов, и контроллер получения фруктов
+
+7. Чтобы создать ресурсный контроллер FruitResource, нужно выполнить команду:
+php artisan make:resource FruitResource
