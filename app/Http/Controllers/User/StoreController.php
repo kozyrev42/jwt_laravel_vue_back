@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 
 class StoreController extends Controller
@@ -19,11 +20,18 @@ class StoreController extends Controller
             'password_confirmation' => 'required|string',
         ]);
 
-        $data['password'] = Hash::make($data['password']); // хеширум пароль
-        User::firstOrCreate([
-            'email' => $data['email']
-        ], $data);
+        $user = User::where('email', $data['email'])->first();
 
-        return $data;
+        // если пользователь с таким email уже существует, то выкидываем ошибку
+        if ($user) {
+            throw ValidationException::withMessages([
+                'email' => ['Пользователь с таким email уже существует.'],
+            ]);
+        }
+
+        $data['password'] = Hash::make($data['password']); // хеширум пароль
+        $user = User::create($data);
+
+        return $user;
     }
 }
