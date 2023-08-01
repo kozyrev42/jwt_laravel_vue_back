@@ -23,3 +23,28 @@ php artisan migrate
 
 7. Чтобы создать ресурсный контроллер FruitResource, нужно выполнить команду:
 php artisan make:resource FruitResource
+
+8. Установка пакета jwt-auth:
+composer require tymon/jwt-auth
+
+*) config/jwt.php, который позволяет настроить основные параметры этого пакета:
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+
+*) Сгенерировать секретный ключ:
+php artisan jwt:secret
+
+*) Ключ, который будет использоваться для подписи ваших токенов:
+.env => JWT_SECRET=foobar
+
+*) Настроить модель User
+
+*) Настроить защиту авторизации в "config/auth.php"
+
+*) Добавил несколько основных маршрутов аутентификации в "routes/api.php"
+
+*) Создание AuthController, заполнение его нужными методами из доки
+php artisan make:controller AuthController
+
+*) теперь если на api/auth/login отправить email и пароль, система вернёт токен
+
+*) в "config/jwt.php" на 104 строке, указывается время жизни токена в минутах

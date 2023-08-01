@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FruitController;
 use App\Http\Controllers\User\StoreController;
@@ -28,3 +29,11 @@ Route::get('/test', [Controller::class, 'testApi']);
 Route::post('/user/registration', [StoreController::class, 'userRegistration']);
 
 Route::get('/fruits', [FruitController::class, 'getFruits']);
+
+// основные маршруты аутентификации
+Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class,'logout']);
+    Route::post('refresh', [AuthController::class,'refresh']);
+    Route::post('me', [AuthController::class,'me']);
+});
