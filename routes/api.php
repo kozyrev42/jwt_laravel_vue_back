@@ -28,7 +28,6 @@ Route::get('/test', [Controller::class, 'testApi']);
 
 Route::post('/user/registration', [StoreController::class, 'userRegistration']);
 
-Route::get('/fruits', [FruitController::class, 'getFruits']);
 
 // основные маршруты аутентификации
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
@@ -36,4 +35,10 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::post('logout', [AuthController::class,'logout']);
     Route::post('refresh', [AuthController::class,'refresh']);
     Route::post('me', [AuthController::class,'me']);
+});
+
+
+// роуты которые будут доступны только авторизованным пользователям
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/fruits', [FruitController::class, 'getFruits']);
 });
