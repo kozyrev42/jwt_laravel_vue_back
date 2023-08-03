@@ -39,6 +39,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 
 
 // роуты которые будут доступны только авторизованным пользователям
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('/fruits', [FruitController::class, 'getFruits']);
 });

@@ -48,3 +48,8 @@ php artisan make:controller AuthController
 *) теперь если на api/auth/login отправить email и пароль, система вернёт токен
 
 *) в "config/jwt.php" на 104 строке, указывается время жизни токена в минутах
+
+9. Чтобы получить ошибку, о том что токен сгорел "Token has expired", нужно указать для группы защищенных роутов
+   'middleware' => 'jwt.auth' 
+
+*) в AuthController добавил 'refresh', что бы его можно было вызвать, и получить новый токен
