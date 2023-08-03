@@ -53,3 +53,5 @@ php artisan make:controller AuthController
    'middleware' => 'jwt.auth' 
 
 *) в AuthController добавил 'refresh', что бы его можно было вызвать, и получить новый токен
+
+10. При регистрации, возвращаем на фронт 'access_token', чтобы на фронте юзера, СРАЗУ АУТЕНТИФИЦИРОВАТЬ

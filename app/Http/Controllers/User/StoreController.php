@@ -32,6 +32,12 @@ class StoreController extends Controller
         $data['password'] = Hash::make($data['password']); // хеширум пароль
         $user = User::create($data);
 
-        return $user;
+        // получаем токен по id нового пользователя
+        $token = auth()->tokenById($user->id);
+
+        return response()->json([
+            'access_token' => $token,
+            'user' => $user,
+        ]);
     }
 }
