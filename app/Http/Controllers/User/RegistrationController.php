@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 
-class StoreController extends Controller
+class RegistrationController extends Controller
 {
     public function userRegistration(Request $request)
     {

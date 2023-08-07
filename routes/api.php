@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FruitController;
-use App\Http\Controllers\User\StoreController;
+use App\Http\Controllers\User\RegistrationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/test', [Controller::class, 'testApi']);
 
-Route::post('/user/registration', [StoreController::class, 'userRegistration']);
+Route::post('/user/registration', [RegistrationController::class, 'userRegistration']);
 
 
 // основные маршруты аутентификации
